@@ -1,5 +1,46 @@
 <div class="container">
   <h1>User Skills and Levels</h1>
 
-  <%# TODO: display the skills and proficiency levels for each user ... %>
+  <table>
+    <tr>
+      <td>Name</td>
+      <td>Skill</td>
+      <td>Years</td>
+      <td>Formal?</td>
+    </tr>
+    <% @users.each do |user| %>
+    <tr class="user">
+      <td><%= user.name %></td>
+      <td>
+        <ul>
+          <% user.proficiencies.each do |proficiency| %>
+          <li><%= proficiency.skill.name %> (<%= proficiency.skill.context %>)</li>
+          <% end %>
+        </ul>
+      </td>
+      <td>
+        <ul>
+          <% user.proficiencies.each do |proficiency| %>
+          <li><%= proficiency.years %></li>
+          <% end %>
+        </ul>
+      </td>
+      <td>
+        <ul>
+          <% user.proficiencies.each do |proficiency| %>
+          <li><%= proficiency.formal %></li>
+          <% end %>
+        </ul>
+      </td>
+    </tr>
+    <% end %>
+  </table>
+
+
 </div>
+
+  <% if session[:user_id] %>
+    <form action="/users/skills" method="get">
+      <input type="submit" value="Add Skills">
+    </form>
+  <% end %>

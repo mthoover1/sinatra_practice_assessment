@@ -1,0 +1,23 @@
+skills
+
+
+<% @skills.each do |skill| %>
+<form action="/users/skills/add/<%=@user.id%>/<%=skill.id%>" method="post">
+  <table>
+    <tr>
+      <td>
+        <%= skill.name %>
+      </td>
+      <td>
+        <input type="text" placeholder="years" name="skill[years]">
+      </td>
+      <td>
+        <input type="text" placeholder="formal? (true or false)" name="skill[formal]">
+      </td>
+      <td>
+        <input type="submit" value="submit">
+      </td>
+    </tr>
+  </table>
+</form>
+<% end %>

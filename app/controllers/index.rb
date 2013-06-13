@@ -44,6 +44,21 @@ get '/users/new' do
   erb :sign_up
 end
 
+get '/users/skills' do
+  @user = User.find(session[:user_id])
+  @skills = Skill.all
+  erb :skills
+end
+
+post '/users/skills/add/:user_id/:skill_id' do
+  p params[:skill]
+  Proficiency.create(user_id: params[:user_id],
+                     skill_id: params[:skill_id],
+                     years: params[:skill][:years],
+                     formal: params[:skill][:formal] )
+  redirect '/'
+end
+
 post '/users' do
   # sign-up
   @user = User.new params[:user]
